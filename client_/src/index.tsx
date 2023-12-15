@@ -1,13 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import '@/styles/index.scss';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
+import { RootModelContextProvider } from '@/store/rootModel';
+
+import Main from './Main';
+
+const root = document.getElementById('root') as HTMLElement;
+
+createRoot(root).render(
+  <RootModelContextProvider>
+    <BrowserRouter>
+      <Main />
+    </BrowserRouter>
+  </RootModelContextProvider>,
 );

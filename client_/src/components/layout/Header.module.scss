@@ -1,0 +1,61 @@
+@use '@/styles/uiKit' as *;
+
+.header{
+  padding-top: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  &_wrapper{
+    @extend %container;
+  }
+  &_logotype {
+    color: var(--text);
+  }
+
+  &_nav{
+    width: 100%;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: var(--darkPrimary);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_wrapper{
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    &_list{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    &_item{
+      position: relative;
+      &:before{
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0;
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        transition: .4s;
+        background-color: var(--text);
+      }
+      &.active:before{
+        width: 100%;
+      }
+      &:hover:before{
+        width:100%;
+      }
+    }
+    &_link {
+      color: var(--text)
+    }
+  }
+}

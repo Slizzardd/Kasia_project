@@ -1,0 +1,31 @@
+@use '@/styles/variables' as *;
+
+%xGap {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+%container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @extend %xGap;
+
+  @media(max-width: $xl){
+    max-width: 100%;
+  }
+}
+
+%button {
+  border: 1px var(--altText) solid;
+  color: var(--text);
+  background: var(--darkPrimary);
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: .4s;
+  cursor: pointer;
+  &:hover{
+    box-shadow: 0 0 2px 2px var(--text) inset;
+  }
+}

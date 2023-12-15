@@ -1,0 +1,19 @@
+$xl: 1200px;
+$l: 800px;
+$m: 568px;
+$s: 320px;
+
+
+:root {
+  --darkPrimary: #bfbfbf;
+  --background: #fff;
+  --text: #000;
+  --altText: #fff;
+}
+
+:root[theme="dark"] {
+  --darkPrimary: #000;
+  --background: #414141;
+  --text: #fff;
+  --altText: #000;
+}

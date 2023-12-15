@@ -37,7 +37,15 @@ public class AuthenticationRestController {
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody UserRequestDto userRequestDto) {
         try {
-            return ResponseEntity.ok(userFacade.createUser(userRequestDto));
+            UserResponseDto user = userFacade.createUser(userRequestDto);
+
+            if(user != null){
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequestDto.getEmail(), userRequestDto.getPassword()));
+                String token = jwtTokenProvider.createToken(userRequestDto.getEmail(), user.getUserRole());
+                return ResponseEntity.ok(new UserWithJwtResponseDto(token, user));
+            }else {
+                throw new EntityExistException("");
+            }
         } catch (EntityExistException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
