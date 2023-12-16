@@ -36,6 +36,7 @@ public class JwtTokenFilter extends GenericFilterBean {
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
             }
+
         } catch (JwtAuthenticationException | UsernameNotFoundException e) {
             handleJwtAuthenticationException((HttpServletRequest) req, (HttpServletResponse) res);
             return;

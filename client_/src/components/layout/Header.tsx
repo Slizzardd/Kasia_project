@@ -24,56 +24,66 @@ const Header = () => {
   const isLogin = false;
   const userInfo = { username: 'username' };
 
-  const userLanguage: string = navigator.language;
   return (
     <header className={styles.header}>
-      <div className={styles.header_wrapper}>
-        <nav className={styles.header_nav}>
-          <Link className={styles.header_logotype} to={'/'}>
-            {t('Kasia')}
-          </Link>
-          <div className={styles.header_nav_wrapper}>
-            <ul className={styles.header_nav_list}>
-              {pages.map((item, index) => {
-                const isActive = currentLink === item.path;
+      <Link className={styles.header_logo} to={'/'}>
+        {t('Kasia')}
+      </Link>
 
-                if (
-                  item.needIsLogin !== undefined &&
-                  ((item.needIsLogin && !isLogin) || (!item.needIsLogin && isLogin))
-                ) {
-                  return null;
-                }
-
-                return (
-                  <li key={index} className={`${styles.header_nav_item}`}>
-                    <Link to={item.path} className={styles.header_nav_link}>
-                      {item.path === Screens.Profile ? userInfo.username : item.name}
-                    </Link>
-                  </li>
-                );
-              })}
-
-              {clicked && (
-                <div onClick={() => setClicked(!clicked)}>
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect width="24" height="4" rx="2" fill="currentColor" />
-                    <rect y="10" width="24" height="4" rx="2" fill="currentColor" />
-                    <rect y="20" width="24" height="4" rx="2" fill="currentColor" />
-                  </svg>
-                </div>
-              )}
-              <ToggleTheme />
-              <ToggleLanguage />
-            </ul>
-          </div>
-        </nav>
+      <div
+        className={styles.header_menu}
+        onClick={() => {
+          setClicked(!clicked);
+        }}
+      >
+        {clicked ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            id="Capa_1"
+            width="25px"
+            height="25px"
+            viewBox="0 0 94.926 94.926"
+            xmlSpace="preserve"
+          >
+            <g>
+              <path d="M55.931,47.463L94.306,9.09c0.826-0.827,0.826-2.167,0-2.994L88.833,0.62C88.436,0.224,87.896,0,87.335,0   c-0.562,0-1.101,0.224-1.498,0.62L47.463,38.994L9.089,0.62c-0.795-0.795-2.202-0.794-2.995,0L0.622,6.096   c-0.827,0.827-0.827,2.167,0,2.994l38.374,38.373L0.622,85.836c-0.827,0.827-0.827,2.167,0,2.994l5.473,5.476   c0.397,0.396,0.936,0.62,1.498,0.62s1.1-0.224,1.497-0.62l38.374-38.374l38.374,38.374c0.397,0.396,0.937,0.62,1.498,0.62   s1.101-0.224,1.498-0.62l5.473-5.476c0.826-0.827,0.826-2.167,0-2.994L55.931,47.463z" />
+            </g>
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="25"
+            height="25"
+            viewBox="0 0 50 50"
+          >
+            <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
+          </svg>
+        )}
       </div>
+      <ul className={clicked ? styles.header_navMenu : styles.header_navMenu_notVisible}>
+        {pages.map((item, index) => {
+          if (
+            item.needIsLogin !== undefined &&
+            ((item.needIsLogin && !isLogin) || (!item.needIsLogin && isLogin))
+          ) {
+            return null;
+          }
+
+          return (
+            <li key={index} className={`${styles.header_nav_item}`}>
+              <Link to={item.path} className={styles.header_navMenu_navLinks}>
+                {item.path === Screens.Profile ? userInfo.username : item.name}
+              </Link>
+            </li>
+          );
+        })}
+
+        <ToggleLanguage />
+        <ToggleTheme />
+      </ul>
     </header>
   );
 };

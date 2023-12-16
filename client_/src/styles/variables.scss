@@ -9,6 +9,9 @@ $s: 320px;
   --background: #f8f87a;
   --text: #000;
   --altText: #fff;
+  --hover: #f8f87a;
+  --backgroundButtonInAuth: #ffffff;
+  --colorLineInAuth: #414141;
 }
 
 :root[theme="dark"] {
@@ -16,4 +19,8 @@ $s: 320px;
   --background: #414141;
   --text: #fff;
   --altText: #000;
+  --hover: #414141;
+  --backgroundButtonInAuth: #414141;
+  --colorLineInAuth: #414141;
+
 }

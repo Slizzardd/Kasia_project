@@ -2,7 +2,6 @@ import { observer } from 'mobx-react';
 import React, { useState } from 'react';
 
 import MainLayout from '@/components/layout/MainLayout';
-import Form from '@/components/ui/Form';
 import { useRootModel } from '@/store/rootModel';
 
 import styles from './Auth.module.scss';
@@ -12,69 +11,118 @@ const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 const Auth = () => {
   const [authType, setAuthType] = useState<'login' | 'register'>('login');
   const { t } = useRootModel((root) => root.translationService);
+  const { registration } = useRootModel((root) => root.userModel);
 
-  const validate = (str: string, name: string) => {
-    switch (name) {
-      case 'email': {
-        return emailPattern.test(str);
-      }
-      default: {
-        return true;
-      }
-    }
+  const [formState, setFormState] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    repeatPassword: '',
+    errorText: '',
+  });
+  const handleSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { email, password, firstName, lastName } = formState;
+
+    registration({ email, password, firstName, lastName }).then(() => {
+      console.log(123);
+    });
   };
-
-  const authSubmit = async (formState: { [key: string]: string }) => {};
 
   return (
     <MainLayout>
       {authType === 'login' ? (
         <>
-          <Form
-            key={'login'}
-            onSubmit={authSubmit}
-            formInfo={{ buttonText: t('Sign in') }}
-            initFormState={{
-              email: { text: '', placeholder: t('Email'), type: 'text' },
-              password: { text: '', placeholder: t('Password'), type: 'password' },
-            }}
-            validation={validate}
-          />
-          <p>{t('Don`t you have an account?')}</p>
-          <button
-            className={styles.anotherMethodButton}
-            onClick={() => setAuthType('register')}
-          >
-            {t('Sign up')}
-          </button>
+          <form onSubmit={handleSubmitLogin} className={styles.form}>
+            <div className={''}>
+              <h2 className={styles.form_title}>{t('Sign in')}</h2>
+              <div className={styles.form_box}>
+                <label htmlFor={'email'} className={styles.form_label}>
+                  {t('Email')}
+                </label>
+                <input
+                  type={'text'}
+                  className={styles.form_field}
+                  id={'email'}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                      errorText: '',
+                    }))
+                  }
+                  required
+                />
+              </div>
+
+              <div className={styles.form_box}>
+                <label htmlFor={'password'} className={styles.form_label}>
+                  {t('Password')}
+                </label>
+                <input
+                  type={'text'}
+                  className={styles.form_field}
+                  id={'password'}
+                  value={formState.password}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                      errorText: '',
+                    }))
+                  }
+                  required
+                />
+              </div>
+              <div className={styles.form_box}>
+                <label htmlFor={'firstName'} className={styles.form_label}>
+                  {t('First Name')}
+                </label>
+                <input
+                  type={'text'}
+                  className={styles.form_field}
+                  id={'firstName'}
+                  value={formState.firstName}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      firstName: e.target.value,
+                      errorText: '',
+                    }))
+                  }
+                  required
+                />
+              </div>
+
+              <div className={styles.form_box}>
+                <label htmlFor={'lastName'} className={styles.form_label}>
+                  {t('Last Name')}
+                </label>
+                <input
+                  type={'text'}
+                  className={styles.form_field}
+                  id={'lastName'}
+                  value={formState.lastName}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      lastName: e.target.value,
+                      errorText: '',
+                    }))
+                  }
+                  required
+                />
+              </div>
+              <button type={'submit'} className={styles.form_button}>
+                {t('Submit')}
+              </button>
+            </div>
+          </form>
         </>
       ) : (
-        <>
-          <Form
-            key={'register'}
-            onSubmit={authSubmit}
-            formInfo={{ buttonText: t('Sign up') }}
-            initFormState={{
-              firstName: { text: '', placeholder: t('First Name'), type: 'text' },
-              lastName: { text: '', placeholder: t('Last Name'), type: 'text' },
-              email: { text: '', placeholder: t('Email'), type: 'text' },
-              password: { text: '', placeholder: t('Password'), type: 'password' },
-              repeatPassword: {
-                text: '',
-                placeholder: t('Repeat password'),
-                type: 'password',
-              },
-            }}
-            validation={validate}
-          />
-
-          <button
-            className={styles.anotherMethodButton}
-            onClick={() => setAuthType('login')}
-          >
-            {t('Sign in')}
-          </button>
-        </>
+        <></>
       )}
     </MainLayout>
   );

@@ -1,6 +1,61 @@
-.anotherMethodButton {
-  display: block;
-  margin: 20px auto 0 auto;
-  text-decoration: underline;
-  cursor: pointer;
+@use '@/styles/uiKit' as *;
+.form {
+  @extend %container;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.7);
+  width: 50%;
+  padding-top: 110px;
+  padding-bottom: 110px;
+  border-radius: 13px;
+  &_wrapper{
+    color: #fff;
+  }
+
+  &_title {
+    color: var(--text);
+    position: relative;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+
+    &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 35%;
+      height: 3px;
+      background: var(--colorLineInAuth);
+    }
+  }
+
+  &_label{
+    color: var(--text);
+  }
+  &_box {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  &_field {
+    color: var(--text);
+    padding: 0.2rem;
+    font-size: 1.2rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: var(--backgroundButtonInAuth);
+  }
+
+  &_button{
+    margin: 20px auto 0 auto;
+    background: var(--backgroundButtonInAuth);
+    border-radius: 13px;
+    color: var(--text);
+    display: block;
+    padding: 0.5rem 4rem;
+  }
+
 }

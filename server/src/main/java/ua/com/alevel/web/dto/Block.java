@@ -1,8 +1,6 @@
 package ua.com.alevel.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 

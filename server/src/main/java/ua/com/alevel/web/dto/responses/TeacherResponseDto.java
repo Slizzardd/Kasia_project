@@ -1,7 +1,5 @@
 package ua.com.alevel.web.dto.responses;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import ua.com.alevel.persistence.entity.Teacher;
 import ua.com.alevel.persistence.types.*;
 

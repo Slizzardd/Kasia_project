@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  kasia-server:
+  innoscripta-case-server:
     build:
       context: .
     image: kasia-server
@@ -11,7 +11,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      MONGO_URI: mongodb://mongodb:27017/kasia
+      MONGO_URI: mongodb://mongodb:27018/kasia
     networks:
       - all-apps
 
@@ -19,7 +19,9 @@ services:
     image: mongo:latest
     container_name: mongodb
     ports:
-      - "27017:27017"
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_DATABASE: kasia
     volumes:
       - mongo-data:/data/db
     networks:
