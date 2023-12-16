@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
 import { useTranslate } from '@/store/rootModel';
@@ -12,39 +12,42 @@ const getDefaultLocale = (str: string, arr: { value: string; label: string }[]) 
     return d;
   }
 };
-const ToggleLanguage = (effect: React.EffectCallback, deps?: React.DependencyList) => {
+
+const ToggleLanguage = () => {
   const { getLocale, changeLocale, t, currentLocale } = useTranslate();
-  const [options, setOptions] = useState([
-    { value: 'en', label: t('English') },
-    { value: 'ru', label: t('Russian') },
-    { value: 'de', label: t('German') },
-  ]);
+
+  const getOptions = () => {
+    return [
+      { value: 'en', label: 'English' },
+      { value: 'ru', label: 'Russian' },
+      { value: 'de', label: 'Deutsch' },
+      { value: 'ua', label: 'Українська' },
+      { value: 'ar', label: 'العربية' },
+      { value: 'pl', label: 'Polski' },
+      { value: 'es', label: 'Español' },
+      { value: 'fr', label: 'Français' },
+      { value: 'hu', label: 'Magyar' },
+      { value: 'ja', label: '日本語' },
+      { value: 'zh', label: '中文' },
+    ];
+  };
+
+  const [options, setOptions] = useState(getOptions());
 
   const [selectedOption, setSelectedOption] = useState<{
     value: string;
     label: string;
-  } | null>(getDefaultLocale(getLocale(), options));
+  } | null>(getDefaultLocale(getLocale(), getOptions()));
 
   useEffect(() => {
-    setOptions([
-      { value: 'en', label: t('English') },
-      { value: 'ru', label: t('Russian') },
-      { value: 'de', label: t('German') },
-    ]);
-    setSelectedOption(
-      getDefaultLocale(getLocale(), [
-        { value: 'en', label: t('English') },
-        { value: 'ru', label: t('Russian') },
-        { value: 'de', label: t('German') },
-      ]),
-    );
+    setOptions(getOptions());
+    setSelectedOption(getDefaultLocale(getLocale(), getOptions()));
   }, [currentLocale]);
-  const locale = getLocale();
 
-  // return <button onClick={toggleLocaleHandler}>{getLocale()}</button>;
   return (
     <Select
-      defaultValue={selectedOption}
+      key={currentLocale}
+      value={selectedOption}
       onChange={(newValue) => {
         setSelectedOption(
           newValue ? { value: newValue.value, label: newValue.label } : null,

@@ -1,6 +1,20 @@
 {
   "Sign in": "Sign in",
+  "Sign up": "Sign up",
+  "Don`t you have an account?": "Don`t you have an account?",
+  "Do you already have an account?": "Do you already have an account?",
   "English": "English",
   "Russian": "Russian",
-  "German": "German"
+  "German": "German",
+  "Ukrainian": "Ukrainian",
+  "Home": "Home",
+  "About us": "About us",
+  "Contacts": "Contacts",
+  "Profile": "Profile",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Password": "Password",
+  "Email": "Email",
+  "Repeat password": "Repeat Password",
+  "Kasia": "Kasia"
 }

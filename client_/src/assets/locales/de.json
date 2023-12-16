@@ -1,6 +1,20 @@
 {
   "Sign in": "Eintragen",
+  "Sign up": "Anmelden",
+  "Don`t you have an account?": "Haben Sie kein Konto?",
+  "Do you already have an account?": "Haben Sie bereits ein Konto?",
   "English": "Englisch",
   "Russian": "Russisch",
-  "German": "Deutsch"
+  "German": "Deutsch",
+  "Ukrainian": "Ukrainisch",
+  "Home": "Heim",
+  "About us": "Über uns",
+  "Contacts": "Kontakte",
+  "Profile": "Profil",
+  "First Name": "Vorname",
+  "Last Name": "Nachname",
+  "Password": "Passwort",
+  "Email": "Email",
+  "Repeat password": "Passwort wiederholen",
+  "Kasia": "Kasia"
 }

@@ -1,6 +1,20 @@
 {
   "Sign in": "Войти",
+  "Sign up": "Зарегистрироваться",
+  "Don`t you have an account?": "У вас нет аккаунта?",
+  "Do you already have an account?": "У вас уже есть аккаунт?",
   "English": "Английский",
   "Russian": "Русский",
-  "German": "Немецкий"
+  "German": "Немецкий",
+  "Ukrainian": "Украинский",
+  "Home": "Главная",
+  "About us": "Про нас",
+  "Contacts": "Контакты",
+  "Profile": "Профиль",
+  "First Name": "Имя",
+  "Last Name": "Фамилия",
+  "Password": "Пароль",
+  "Email": "Email",
+  "Repeat password": "Повторите пароль",
+  "Kasia": "Касия"
 }

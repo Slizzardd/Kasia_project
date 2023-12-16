@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import ToggleLanguage from '@/components/ui/ToggleLanguage';
@@ -17,11 +18,11 @@ const Header = () => {
   const { t } = useRootModel((root) => root.translationService);
 
   const pages = [
-    { path: Screens.Home, name: 'Home' },
-    { path: Screens.About, name: 'About' },
-    { path: Screens.Contacts, name: 'Contacts' },
+    { path: Screens.Home, name: t('Home') },
+    { path: Screens.About, name: t('About us') },
+    { path: Screens.Contacts, name: t('Contacts') },
     { path: Screens.Auth, name: t('Sign in'), needIsLogin: false },
-    { path: Screens.Profile, name: 'Profile', needIsLogin: true },
+    { path: Screens.Profile, name: t('Profile'), needIsLogin: true },
   ];
 
   const currentLink = useLocation().pathname;
@@ -34,7 +35,7 @@ const Header = () => {
       <div className={styles.header_wrapper}>
         <nav className={styles.header_nav}>
           <Link className={styles.header_logotype} to={'/'}>
-            React
+            {t('Kasia')}
           </Link>
 
           <div className={styles.header_nav_wrapper}>
