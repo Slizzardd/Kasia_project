@@ -1,4 +1,5 @@
 @use '@/styles/uiKit' as *;
+@use '@/styles/variables' as *;
 
 .header{
   padding-top: 10px;
@@ -12,6 +13,8 @@
   }
   &_logotype {
     color: var(--text);
+    justify-self: start;
+    cursor: pointer;
   }
 
   &_nav{
@@ -23,16 +26,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     &_wrapper{
       display: flex;
       align-items: center;
       gap: 30px;
     }
     &_list{
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(6, auto);
+      grid-gap: 10px;
       align-items: center;
-      gap: 16px;
+      text-align: center;
+      justify-content: end;
     }
     &_item{
       position: relative;
@@ -55,6 +60,7 @@
       }
     }
     &_link {
+
       color: var(--text)
     }
   }

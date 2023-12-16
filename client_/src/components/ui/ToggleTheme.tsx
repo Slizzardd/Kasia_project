@@ -11,10 +11,13 @@ const ToggleTheme = () => {
     setTheme(toggleTheme());
   };
 
+  const getChecked = () => {
+    return theme === 'light';
+  };
   return (
-    <button onClick={changeThemeHandler} className={styles.button}>
-      {theme}
-    </button>
+    <div>
+      <input type={'checkbox'} checked={getChecked()} onChange={changeThemeHandler} />
+    </div>
   );
 };
 

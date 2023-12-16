@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
 
 import { useTranslate } from '@/store/rootModel';
 
+import styles from './ToggleLanguage.module.scss';
 const getDefaultLocale = (str: string, arr: { value: string; label: string }[]) => {
   const d = arr.filter((i) => i.value === str)[0];
   if (d === null || d === undefined) {
@@ -14,12 +14,12 @@ const getDefaultLocale = (str: string, arr: { value: string; label: string }[]) 
 };
 
 const ToggleLanguage = () => {
-  const { getLocale, changeLocale, t, currentLocale } = useTranslate();
+  const { getLocale, changeLocale, currentLocale } = useTranslate();
 
   const getOptions = () => {
     return [
       { value: 'en', label: 'English' },
-      { value: 'ru', label: 'Russian' },
+      { value: 'ru', label: 'Русский' },
       { value: 'de', label: 'Deutsch' },
       { value: 'ua', label: 'Українська' },
       { value: 'ar', label: 'العربية' },
@@ -39,25 +39,33 @@ const ToggleLanguage = () => {
     label: string;
   } | null>(getDefaultLocale(getLocale(), getOptions()));
 
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = event.target.value;
+
+    setSelectedOption(getOptions().find((option) => option.value === newValue) || null);
+
+    if (newValue !== null) {
+      changeLocale(newValue);
+    }
+  };
+
   useEffect(() => {
     setOptions(getOptions());
     setSelectedOption(getDefaultLocale(getLocale(), getOptions()));
-  }, [currentLocale]);
+  }, [currentLocale, getLocale]);
 
   return (
-    <Select
-      key={currentLocale}
-      value={selectedOption}
-      onChange={(newValue) => {
-        setSelectedOption(
-          newValue ? { value: newValue.value, label: newValue.label } : null,
-        );
-        if (newValue !== null) {
-          changeLocale(newValue.value);
-        }
-      }}
-      options={options}
-    />
+    <select
+      className={styles.select}
+      onChange={handleSelect}
+      value={selectedOption?.value}
+    >
+      {options.map((option, key) => (
+        <option key={key} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
   );
 };
 

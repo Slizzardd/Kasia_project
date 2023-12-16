@@ -5,14 +5,14 @@ $s: 320px;
 
 
 :root {
-  --darkPrimary: #bfbfbf;
-  --background: #fff;
+  --darkPrimary: #f5f5dc;
+  --background: #f8f87a;
   --text: #000;
   --altText: #fff;
 }
 
 :root[theme="dark"] {
-  --darkPrimary: #000;
+  --darkPrimary: #181818;
   --background: #414141;
   --text: #fff;
   --altText: #000;
