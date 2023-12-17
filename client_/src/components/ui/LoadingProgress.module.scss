@@ -1,0 +1,29 @@
+
+.line {
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &_text {
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  &_wrapper {
+    height: 4px;
+    border-radius: 4px;
+    background-color: #cecece;
+    width: 100%;
+    overflow: hidden;
+  }
+  &_inner {
+    background-color: #000;
+    height: 4px;
+    transition: .5s;
+  }
+}
+
+

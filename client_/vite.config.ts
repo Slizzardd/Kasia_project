@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [viteReact()],
   server: {
     port: 3000,
-    host: '26.136.26.88',
+    host: 'localhost',
   },
   preview: {
     host: true,

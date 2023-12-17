@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './MainLayout.module.scss';
 
-const MainLayout: React.FC<{ children: React.ReactNode; className?: string }> = (
+const MainLayout: React.FC<{ children?: React.ReactNode; className?: string }> = (
   props,
 ) => {
   if (props.className !== undefined) {

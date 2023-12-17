@@ -1,47 +1,57 @@
 package ua.com.alevel.web.dto.responses;
 
+import org.modelmapper.ModelMapper;
 import ua.com.alevel.persistence.entity.Teacher;
 import ua.com.alevel.persistence.entity.User;
 import ua.com.alevel.persistence.entity.courses.Course;
+import ua.com.alevel.persistence.entity.courses.CourseDescription;
 import ua.com.alevel.persistence.types.Languages;
+import ua.com.alevel.web.dto.requests.CourseDescriptionDto;
 
 import java.util.Map;
 
 public class CourseResponseDto extends ResponseDto{
 
-    private Map<Languages, String> title;
-
-    private String teacherEmail;
+    private Long numOfLessons;
     private String teacherFirstName;
     private String teacherLastName;
-
+    private String pathToImage;
+    private CourseDescriptionDto mainVersion;
+    private CourseDescriptionDto englishVersion;
     public CourseResponseDto(Course course) {
         setId(course.getId());
         setCreated(course.getCreated());
         setUpdated(course.getUpdated());
-        this.title = course.getTitle();
-
+        this.mainVersion = new ModelMapper().map(course.getMainVersion(), CourseDescriptionDto.class);
+        this.englishVersion = new ModelMapper().map(course.getEnglishVersion(), CourseDescriptionDto.class);
+        this.pathToImage = "";
         User user = course.getTeacher().getUser();
 
         this.teacherFirstName = user.getFirstName();
-        this.teacherEmail = user.getEmail();
         this.teacherLastName = user.getLastName();
     }
 
-    public Map<Languages, String> getTitle() {
-        return title;
+    public CourseResponseDto(Course course, Long countLessons) {
+        setId(course.getId());
+        setCreated(course.getCreated());
+        setUpdated(course.getUpdated());
+        this.mainVersion = new ModelMapper().map(course.getMainVersion(), CourseDescriptionDto.class);
+        this.englishVersion = new ModelMapper().map(course.getEnglishVersion(), CourseDescriptionDto.class);
+        this.numOfLessons = countLessons;
+        this.pathToImage = "";
+        User user = course.getTeacher().getUser();
+
+        this.teacherFirstName = user.getFirstName();
+        this.teacherLastName = user.getLastName();
     }
 
-    public void setTitle(Map<Languages, String> title) {
-        this.title = title;
+
+    public Long getNumOfLessons() {
+        return numOfLessons;
     }
 
-    public String getTeacherEmail() {
-        return teacherEmail;
-    }
-
-    public void setTeacherEmail(String teacherEmail) {
-        this.teacherEmail = teacherEmail;
+    public void setNumOfLessons(Long numOfLessons) {
+        this.numOfLessons = numOfLessons;
     }
 
     public String getTeacherFirstName() {
@@ -58,5 +68,29 @@ public class CourseResponseDto extends ResponseDto{
 
     public void setTeacherLastName(String teacherLastName) {
         this.teacherLastName = teacherLastName;
+    }
+
+    public String getPathToImage() {
+        return pathToImage;
+    }
+
+    public void setPathToImage(String pathToImage) {
+        this.pathToImage = pathToImage;
+    }
+
+    public CourseDescriptionDto getMainVersion() {
+        return mainVersion;
+    }
+
+    public void setMainVersion(CourseDescriptionDto mainVersion) {
+        this.mainVersion = mainVersion;
+    }
+
+    public CourseDescriptionDto getEnglishVersion() {
+        return englishVersion;
+    }
+
+    public void setEnglishVersion(CourseDescriptionDto englishVersion) {
+        this.englishVersion = englishVersion;
     }
 }

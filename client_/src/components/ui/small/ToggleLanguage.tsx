@@ -29,6 +29,7 @@ const ToggleLanguage = () => {
       { value: 'hu', label: 'Magyar' },
       { value: 'ja', label: '日本語' },
       { value: 'zh', label: '中文' },
+      { value: 'cs', label: 'Český' },
     ];
   };
 

@@ -17,6 +17,11 @@
   "Email": "Email",
   "Repeat password": "Повторити пароль",
   "Kasia": "Касія",
-  "Submit": "Підтвердіти"
-
+  "Submit": "Підтвердіти",
+  "Title": "Назва",
+  "Creator": "Творець",
+  "Description": "Опис",
+  "Teacher": "Вчитель",
+  "Details": "Деталі",
+  "Joined": "Приєднався"
 }

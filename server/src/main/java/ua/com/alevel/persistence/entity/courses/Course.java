@@ -14,7 +14,8 @@ import java.util.Map;
 @Document
 public class Course extends BaseEntity {
 
-    private Map<Languages, String> title;
+    private CourseDescription mainVersion;
+    private CourseDescription englishVersion;
     private Teacher teacher;
     private List<Lesson> lessons;
     private LessonStatus status;
@@ -22,15 +23,26 @@ public class Course extends BaseEntity {
         super();
         this.lessons = new ArrayList<>();
         this.status = LessonStatus.NOT_APPROVE;
-        this.title = new HashMap<>();
     }
 
-    public Map<Languages, String> getTitle() {
-        return title;
+    public List<Lesson> addLesson(Lesson lesson){
+        this.lessons.add(lesson);
+        return lessons;
+    }
+    public CourseDescription getMainVersion() {
+        return mainVersion;
     }
 
-    public void setTitle(Map<Languages, String> title) {
-        this.title = title;
+    public void setMainVersion(CourseDescription mainVersion) {
+        this.mainVersion = mainVersion;
+    }
+
+    public CourseDescription getEnglishVersion() {
+        return englishVersion;
+    }
+
+    public void setEnglishVersion(CourseDescription englishVersion) {
+        this.englishVersion = englishVersion;
     }
 
     public Teacher getTeacher() {

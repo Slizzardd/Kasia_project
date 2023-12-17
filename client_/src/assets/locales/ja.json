@@ -17,6 +17,11 @@
   "Email": "メールアドレス",
   "Repeat password": "パスワードを再入力",
   "Kasia": "Kasia",
-  "Submit": "提出する"
-
+  "Submit": "提出する",
+  "Title": "タイトル",
+  "Creator": "クリエーター",
+  "Description": "説明",
+  "Teacher": "教師",
+  "Details": "詳細",
+  "Joined": "参加しました"
 }

@@ -9,6 +9,7 @@ import ua.com.alevel.service.TeacherService;
 import ua.com.alevel.service.UserService;
 import ua.com.alevel.web.dto.requests.TeacherRequestDto;
 import ua.com.alevel.web.dto.responses.TeacherResponseDto;
+import ua.com.alevel.web.dto.responses.UserResponseDto;
 
 @Service
 public class TeacherFacadeImpl implements TeacherFacade {
@@ -23,7 +24,7 @@ public class TeacherFacadeImpl implements TeacherFacade {
     }
 
     @Override
-    public TeacherResponseDto createTeacher(TeacherRequestDto req) {
+    public UserResponseDto createTeacher(TeacherRequestDto req) {
         Teacher teacher = new Teacher();
         teacher.setHisLanguage(req.getLanguage());
         teacher.setHisLanguageLevel(req.getHisLanguageLevel());
@@ -32,27 +33,27 @@ public class TeacherFacadeImpl implements TeacherFacade {
         User user = userService.findUserByEmail(req.getUserEmail());
         teacher.setId(user.getId());
         teacher.setUser(user);
-        return new TeacherResponseDto(teacherService.createTeacher(teacher));
+        return new UserResponseDto(teacherService.createTeacher(teacher));
     }
 
     @Override
-    public TeacherResponseDto findTeacherByEmail(String email) {
+    public UserResponseDto findTeacherByEmail(String email) {
         Teacher teacher = teacherService.findTeacherById(userService.findUserByEmail(email).getId());
         if (teacher != null) {
-            return new TeacherResponseDto(teacher);
+            return new UserResponseDto(teacher);
         } else {
             return null;
         }
     }
 
     @Override
-    public TeacherResponseDto updateTeacher(TeacherRequestDto req) {
+    public UserResponseDto updateTeacher(TeacherRequestDto req) {
         Teacher teacher = teacherService.findTeacherById(req.getId());
         teacher.setHisLanguage(req.getLanguage());
         teacher.setHisLanguageLevel(req.getHisLanguageLevel());
         teacher.setPreferredLevels(req.getPreferredLevels());
         teacher.setPreferredAge(req.getPreferredAges());
         teacher.setStatus(Status.ACTIVE);
-        return new TeacherResponseDto(teacherService.updateTeacher(teacher));
+        return new UserResponseDto(teacherService.updateTeacher(teacher));
     }
 }

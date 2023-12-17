@@ -17,6 +17,12 @@
   "Email": "Email",
   "Repeat password": "Повторите пароль",
   "Kasia": "Касия",
-  "Submit": "Подтвердить"
-
+  "Submit": "Подтвердить",
+  "Title": "Название",
+  "Creator": "Создатель",
+  "Description": "Описание",
+  "Teacher": "Учитель",
+  "Details": "Подробнее",
+  "Joined": "Присоединился",
+  "Role": "Роль"
 }

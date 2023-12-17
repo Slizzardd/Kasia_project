@@ -1,0 +1,14 @@
+@use '@/styles/uiKit' as *;
+
+.wrapper {
+  @extend %container;
+  background: white;
+
+  &_image {
+    // Стили для изображения, если нужны
+  }
+
+  &_infomation {
+    // Стили для информации, если нужны
+  }
+}

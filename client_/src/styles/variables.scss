@@ -6,12 +6,13 @@ $s: 320px;
 
 :root {
   --darkPrimary: #f5f5dc;
-  --background: #f8f87a;
+  --background: #ffc4c4;
   --text: #000;
   --altText: #fff;
   --hover: #f8f87a;
   --backgroundButtonInAuth: #ffffff;
   --colorLineInAuth: #414141;
+  --containerBackground: #dab4b4;
 }
 
 :root[theme="dark"] {
@@ -22,5 +23,5 @@ $s: 320px;
   --hover: #414141;
   --backgroundButtonInAuth: #414141;
   --colorLineInAuth: #414141;
-
+  --containerBackground: #313131;
 }

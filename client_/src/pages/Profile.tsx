@@ -4,35 +4,51 @@ import React, { useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import { useRootModel } from '@/store/rootModel';
 
+import styles from './Profile.module.scss';
 const Profile = () => {
-  const { updateUser, user } = useRootModel((root) => root.userModel);
+  const { authStore } = useRootModel((root) => root.userModel);
+  const { t } = useRootModel((root) => root.translationService);
 
-  const [value, setValue] = useState('');
-
-  const [status, setStatus] = useState<'await' | 'loading' | 'error' | 'success'>(
-    'await',
-  );
-
-  const updateUserHandler = () => {
-    setStatus('loading');
-    updateUser({ username: value })
-      .then(() => {
-        setStatus('success');
-      })
-      .catch((err: { errorInRequest: string }) => {
-        setStatus('error');
-      });
-  };
-
+  const user = authStore.user;
   return (
     <MainLayout>
-      <p>profile page: {user}</p>
-
-      <input value={value} onChange={(e) => setValue(e.target.value)} />
-
-      <button onClick={updateUserHandler}>change with mobx</button>
-
-      <p>{status}</p>
+      <section className={styles.wrapper}>
+        <div>
+          <h2>{t('Profile')}</h2>
+          <div className={styles.wrapper_image}>
+            <img
+              src={'src/assets/images/glory05-300x200.jpg'}
+              className={styles.wrapper_card_image}
+              alt={''}
+            />
+          </div>
+          <div className={styles.wrapper_infomation}>
+            <div>
+              <p>
+                {t('Joined')}: {user?.created}
+              </p>
+            </div>
+            <div>
+              <p>
+                {t('Email')}: {user?.email}
+              </p>
+            </div>
+            <div>
+              <p>
+                {t('First Name')}: {user?.firstName}
+              </p>
+            </div>
+            <div>
+              <p>
+                {t('Last Name')}: {user?.lastName}
+              </p>
+            </div>
+            <div>
+              <p>Role: {user?.role}</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </MainLayout>
   );
 };

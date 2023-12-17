@@ -38,7 +38,7 @@ public class AuthenticationRestController {
 
             if(user != null){
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequestDto.getEmail(), userRequestDto.getPassword()));
-                String token = jwtTokenProvider.createToken(userRequestDto.getEmail(), user.getUserRole());
+                String token = jwtTokenProvider.createToken(userRequestDto.getEmail(), user.getRole());
                 return ResponseEntity.ok(new UserWithJwtResponseDto(token, user));
             }else {
                 throw new EntityExistException("");
@@ -63,7 +63,7 @@ public class AuthenticationRestController {
                 throw new UsernameNotFoundException("User with username: " + username + " not found");
             }
 
-            String token = jwtTokenProvider.createToken(username, user.getUserRole());
+            String token = jwtTokenProvider.createToken(username, user.getRole());
 
             return ResponseEntity.ok(new UserWithJwtResponseDto(token, user));
         } catch (AuthenticationException e) {

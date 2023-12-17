@@ -6,6 +6,8 @@ import ua.com.alevel.persistence.entity.courses.Course;
 import ua.com.alevel.persistence.repository.CourseRepository;
 import ua.com.alevel.service.CourseService;
 
+import java.util.List;
+
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -21,7 +23,17 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Course updateCourse(Course course) {
+        return courseRepository.save(course);
+    }
+
+    @Override
     public Course findCourseById(String id) {
         return courseRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(""));
+    }
+
+    @Override
+    public List<Course> findAll() {
+        return courseRepository.findAll();
     }
 }

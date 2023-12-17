@@ -23,5 +23,4 @@ public class WebConfig {
         config.setAllowedOriginPatterns(Collections.singletonList("*"));
         return new CorsFilter(source);
     }
-
 }

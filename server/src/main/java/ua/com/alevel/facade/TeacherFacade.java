@@ -2,12 +2,13 @@ package ua.com.alevel.facade;
 
 import ua.com.alevel.web.dto.requests.TeacherRequestDto;
 import ua.com.alevel.web.dto.responses.TeacherResponseDto;
+import ua.com.alevel.web.dto.responses.UserResponseDto;
 
 public interface TeacherFacade extends BaseFacade<TeacherRequestDto, TeacherResponseDto> {
 
-    TeacherResponseDto createTeacher(TeacherRequestDto req);
+    UserResponseDto createTeacher(TeacherRequestDto req);
 
-    TeacherResponseDto findTeacherByEmail(String email);
+    UserResponseDto findTeacherByEmail(String email);
 
-    TeacherResponseDto updateTeacher(TeacherRequestDto req);
+    UserResponseDto updateTeacher(TeacherRequestDto req);
 }

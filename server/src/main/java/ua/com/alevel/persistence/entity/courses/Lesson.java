@@ -11,7 +11,7 @@ import java.util.Map;
 @Document
 public class Lesson extends BaseEntity {
 
-    private Course course;
+    private String courseId;
 
     private LessonStatus status;
 
@@ -22,12 +22,12 @@ public class Lesson extends BaseEntity {
         this.status = LessonStatus.NOT_APPROVE;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
     public LessonStatus getStatus() {

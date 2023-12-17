@@ -18,4 +18,9 @@ public class LessonServiceImpl implements LessonService {
     public Lesson createLesson(Lesson lesson) {
         return lessonRepository.save(lesson);
     }
+
+    @Override
+    public Long findAllLessonsByCourseId(String courseId) {
+        return lessonRepository.countAllByCourseId(courseId);
+    }
 }

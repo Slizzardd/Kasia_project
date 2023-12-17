@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 
-import Input from '@/components/ui/Input';
+import Input from '@/components/ui/form/Input';
 
 import styles from './Form.module.scss';
 

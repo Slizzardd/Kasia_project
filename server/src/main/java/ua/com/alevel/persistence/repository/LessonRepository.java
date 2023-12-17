@@ -5,4 +5,6 @@ import ua.com.alevel.persistence.entity.courses.Lesson;
 
 @Repository
 public interface LessonRepository extends BaseRepository<Lesson> {
+
+    Long countAllByCourseId(String courseId);
 }

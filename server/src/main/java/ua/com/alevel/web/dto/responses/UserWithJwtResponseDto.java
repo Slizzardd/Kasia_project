@@ -1,16 +1,14 @@
 package ua.com.alevel.web.dto.responses;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 public class UserWithJwtResponseDto{
 
     private String jwtToken;
 
-    private UserResponseDto userResponseDto;
+    private UserResponseDto user;
 
-    public UserWithJwtResponseDto(String jwtToken, UserResponseDto userResponseDto) {
+    public UserWithJwtResponseDto(String jwtToken, UserResponseDto user) {
         this.jwtToken = jwtToken;
-        this.userResponseDto = userResponseDto;
+        this.user = user;
     }
 
     public String getJwtToken() {
@@ -21,11 +19,11 @@ public class UserWithJwtResponseDto{
         this.jwtToken = jwtToken;
     }
 
-    public UserResponseDto getUserResponseDto() {
-        return userResponseDto;
+    public UserResponseDto getUser() {
+        return user;
     }
 
-    public void setUserResponseDto(UserResponseDto userResponseDto) {
-        this.userResponseDto = userResponseDto;
+    public void setUser(UserResponseDto user) {
+        this.user = user;
     }
 }

@@ -1,7 +1,8 @@
 import { makeAutoObservable } from 'mobx';
-import { makePersistable } from 'mobx-persist-store';
+import { makePersistable, stopPersisting } from 'mobx-persist-store';
 
 import ar from '@/assets/locales/ar.json';
+import cs from '@/assets/locales/cs.json';
 import de from '@/assets/locales/de.json';
 import en from '@/assets/locales/en.json';
 import es from '@/assets/locales/es.json';
@@ -12,6 +13,7 @@ import pl from '@/assets/locales/pl.json';
 import ru from '@/assets/locales/ru.json';
 import ua from '@/assets/locales/ua.json';
 import zh from '@/assets/locales/zh.json';
+
 class TranslationService {
   translations: { [key: string]: { [key: string]: string } } = {
     ar,
@@ -22,21 +24,26 @@ class TranslationService {
     hu,
     ja,
     pl,
-    ru,
+    cs,
     ua,
     zh,
+    ru,
   };
   defaultLocale = 'en';
   currentLocale: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
-    makePersistable(this, {
+  }
+
+  init = async () => {
+    stopPersisting(this);
+    await makePersistable(this, {
       name: 'TranslationService',
       storage: localStorage,
-      properties: [],
+      properties: ['currentLocale'],
     });
-  }
+  };
 
   getLocale = () => {
     const TranslationsArray = Object.keys(this.translations);

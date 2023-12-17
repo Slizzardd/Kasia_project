@@ -45,10 +45,8 @@ public class UserRestController {
     @GetMapping("/getUser")
     public ResponseEntity<?> getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         try {
             if (authentication instanceof UsernamePasswordAuthenticationToken) {
-
                 return ResponseEntity.ok(teacherFacade.findTeacherByEmail(authentication.getName()));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

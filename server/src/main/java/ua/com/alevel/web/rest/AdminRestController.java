@@ -1,6 +1,7 @@
 package ua.com.alevel.web.rest;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import ua.com.alevel.exceptions.EntityNotFoundException;
 import ua.com.alevel.facade.TeacherFacade;
@@ -32,6 +33,10 @@ public class AdminRestController {
 
     @PostMapping("/updateUser")
     public ResponseEntity<?> updateUser(@RequestBody UserRequestDto userRequestDto){
-        return ResponseEntity.ok(userFacade.updateUser(userRequestDto));
+        try{
+            return ResponseEntity.ok(userFacade.updateUser(userRequestDto));
+        }catch (UsernameNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 }

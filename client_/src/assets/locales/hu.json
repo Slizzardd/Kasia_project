@@ -17,6 +17,11 @@
   "Email": "E-mail",
   "Repeat password": "Jelszó ismétlése",
   "Kasia": "Kasia",
-  "Submit": "Küldés"
-
+  "Submit": "Küldés",
+  "Title": "Cím",
+  "Creator": "Készítő",
+  "Description": "Leírás",
+  "Teacher": "Tanár",
+  "Details": "Részletek",
+  "Joined": "Csatlakozott"
 }

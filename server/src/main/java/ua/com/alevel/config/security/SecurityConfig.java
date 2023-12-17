@@ -16,7 +16,7 @@ import ua.com.alevel.config.security.jwt.JwtTokenProvider;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class    SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -25,6 +25,7 @@ public class    SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String USER_ENDPOINT = "/api/v1/user/**";
     private static final String TEACHER_REGISTRATION_ENDPOINT = "/api/v1/teacher/registrationTeacher";
     private static final String TEACHER_ENDPOINT = "/api/v1/teacher/**";
+    private static final String COURSES_FOR_NOT_AUTH_ENDPOINT = "/api/v1/course/findAll";
 
     @Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -48,6 +49,7 @@ public class    SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
                     .antMatchers(LOGIN_ENDPOINT).permitAll()
+                    .antMatchers(COURSES_FOR_NOT_AUTH_ENDPOINT).permitAll()
                     .antMatchers(ADMIN_ENDPOINT).hasRole("developers:write")
                     .antMatchers(USER_ENDPOINT).hasRole("developers:read")
                     .antMatchers(TEACHER_REGISTRATION_ENDPOINT).hasRole("developers:read")

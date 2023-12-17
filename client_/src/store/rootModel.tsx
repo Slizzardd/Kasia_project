@@ -1,15 +1,22 @@
 import React, { createContext, useContext } from 'react';
 
+import Loader from '@/store/Loader';
+import CourseModel from '@/store/models/CourseModel';
 import UserModel from '@/store/models/UserModel';
 import TranslationService from '@/store/services/TranslationService';
 
 class RootModel {
+  loader!: Loader;
   translationService!: TranslationService;
   userModel!: UserModel;
+  courseModel!: CourseModel;
 
   constructor() {
     this.translationService = new TranslationService();
     this.userModel = new UserModel();
+    this.courseModel = new CourseModel();
+
+    this.loader = new Loader(this);
   }
 }
 

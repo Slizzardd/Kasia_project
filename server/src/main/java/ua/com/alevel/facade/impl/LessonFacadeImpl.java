@@ -35,7 +35,7 @@ public class LessonFacadeImpl implements LessonFacade {
     @Override
     public LessonResponseDto createLesson(LessonRequestDto req) {
         Lesson lesson = new Lesson();
-        lesson.setCourse(courseService.findCourseById(req.getCourseId()));
+        lesson.setCourseId(req.getCourseId());
         lesson.setLesson(initLessonDescriptionMap(req.getLessonDescriptionRequestDtoMap()));
         return new LessonResponseDto(lessonService.createLesson(lesson));
     }

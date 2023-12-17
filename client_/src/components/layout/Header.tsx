@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import ToggleLanguage from '@/components/ui/ToggleLanguage';
-import ToggleTheme from '@/components/ui/ToggleTheme';
+import ToggleLanguage from '@/components/ui/small/ToggleLanguage';
+import ToggleTheme from '@/components/ui/small/ToggleTheme';
 import { Screens } from '@/routes/AppRouter';
 import { useRootModel } from '@/store/rootModel';
 
@@ -12,6 +12,8 @@ import styles from './Header.module.scss';
 const Header = () => {
   const { t } = useRootModel((root) => root.translationService);
   const [clicked, setClicked] = useState(false);
+  const { authStore, getActualUser } = useRootModel((root) => root.userModel);
+
   const pages = [
     { path: Screens.Home, name: t('Home') },
     { path: Screens.About, name: t('About us') },
@@ -21,9 +23,14 @@ const Header = () => {
   ];
 
   const currentLink = useLocation().pathname;
-  const isLogin = false;
-  const userInfo = { username: 'username' };
+  const isLogin = authStore && authStore.jwtToken;
+  const userInfo = authStore.user;
 
+  useEffect(() => {
+    if (authStore) {
+      getActualUser();
+    }
+  }, []);
   return (
     <header className={styles.header}>
       <Link className={styles.header_logo} to={'/'}>
@@ -75,7 +82,9 @@ const Header = () => {
           return (
             <li key={index} className={`${styles.header_nav_item}`}>
               <Link to={item.path} className={styles.header_navMenu_navLinks}>
-                {item.path === Screens.Profile ? userInfo.username : item.name}
+                {item.path === Screens.Profile
+                  ? `${userInfo?.firstName} ${userInfo?.lastName}`
+                  : item.name}
               </Link>
             </li>
           );

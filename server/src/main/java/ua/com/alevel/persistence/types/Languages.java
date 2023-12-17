@@ -2,10 +2,15 @@ package ua.com.alevel.persistence.types;
 
 public enum Languages {
     ENGLISH,
-    GERMANY,
+    GERMAN,
     SPANISH,
     RUSSIAN,
     UKRAINIAN,
     POLISH,
-    FRENCH
+    FRENCH,
+    ARABIC,
+    CZECH,
+    HUNGARIAN,
+    JAPAN,
+    CHINA;
 }
