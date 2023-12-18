@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.persistence.entity.User;
 import ua.com.alevel.persistence.repository.UserRepository;
+import ua.com.alevel.web.dto.responses.JwtUser;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {

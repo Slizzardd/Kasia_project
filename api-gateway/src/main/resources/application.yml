@@ -1,0 +1,67 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-userId: true
+      default-filters: "DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin"
+      routes:
+        - id: auth-login
+          uri: lb://auth
+          predicates:
+            - Path=/api/v1/auth/login
+            - Method=POST
+        - id: auth-registration
+          uri: lb://auth
+          predicates:
+            - Path=/api/v1/auth/registration
+            - Method=POST
+        - id: getUser
+          uri: lb://auth
+          predicates:
+            - Path=/api/v1/user/getUser
+            - Method=GET
+        - id: regTeacher
+          uri: lb://auth
+          predicates:
+            - Path=/api/v1/user/registrationTeacher
+            - Method=POST
+        - id: approveTeacher
+          uri: lb://auth
+          predicates:
+            - Path=/api/v1/admin/approveTeacher
+            - Method=POST
+        - id: updateUser
+          uri: lb://auth
+          predicates:
+            - Path=/api/v1/user/updateUser
+            - Method=POST
+        - id: test
+          uri: lb://course
+          predicates:
+            - Path=/api/v1/course/test
+            - Method=GET
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+
+logging:
+  pattern:
+    console: "%C{1.} [%-5level] %d[HH:mm:ss] - %msg%n"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka

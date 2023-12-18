@@ -9,18 +9,31 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ua.com.alevel</groupId>
-    <artifactId>server</artifactId>
+    <artifactId>course-microservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>server</name>
-    <description>server</description>
+    <description>Authorization microservice</description>
     <properties>
         <java.version>17</java.version>
         <commons.lang3.version>3.12.0</commons.lang3.version>
+        <spring-cloud.version>2021.0.0</spring-cloud.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -81,6 +94,18 @@
             <version>2.4.4</version> <!-- Проверьте актуальную версию на момент использования -->
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>server</finalName>
