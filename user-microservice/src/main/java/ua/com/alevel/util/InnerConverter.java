@@ -1,16 +1,14 @@
-package ua.com.alevel.config.security.jwt;
+package ua.com.alevel.util;
 
 import ua.com.alevel.persistence.entity.User;
 import ua.com.alevel.persistence.types.Status;
 import ua.com.alevel.web.dto.responses.JwtUser;
 
+public final class InnerConverter {
 
-public final class JwtUserFactory {
+    private InnerConverter() throws IllegalArgumentException{throw new IllegalArgumentException("Util class");}
 
-    public JwtUserFactory() {
-    }
-
-    public static JwtUser create(User user) {
+    public static JwtUser convertUserToJwtUser(User user){
         return new JwtUser(
                 user.getId(),
                 user.getFirstName(),
@@ -19,6 +17,6 @@ public final class JwtUserFactory {
                 user.getPassword(),
                 user.getRole().getAuthorities(),
                 user.getStatus().equals(Status.ACTIVE)
-                );
+        );
     }
 }

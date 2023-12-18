@@ -47,6 +47,11 @@ spring:
           predicates:
             - Path=/api/v1/course/test
             - Method=GET
+        - id: test1
+          uri: lb://auth
+          predicates:
+            - Path=/api/v1/inner/getAuthorization
+            - Method=GET
       globalcors:
         add-to-simple-url-handler-mapping: true
         corsConfigurations:

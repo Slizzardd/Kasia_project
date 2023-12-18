@@ -89,9 +89,21 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version> <!-- Замените на актуальную версию -->
+        </dependency>
+
+        <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
             <version>2.4.4</version> <!-- Проверьте актуальную версию на момент использования -->
+        </dependency>
+        <dependency>
+            <groupId>ua.com.alevel</groupId>
+            <artifactId>user-microservice</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
