@@ -1,7 +1,5 @@
 package ua.com.alevel.web.rest;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,8 +13,6 @@ import ua.com.alevel.facade.TeacherFacade;
 import ua.com.alevel.facade.UserFacade;
 import ua.com.alevel.persistence.entity.User;
 import ua.com.alevel.service.UserService;
-import ua.com.alevel.util.InnerConverter;
-import ua.com.alevel.web.dto.responses.JwtUser;
 
 @RestController
 @RequestMapping("/api/v1/inner")
@@ -33,7 +29,7 @@ public class InnerRestController {
     }
 
     @GetMapping("/getAuthorization")
-    public User getAuthorization(@RequestHeader("Authorization") String authToken){
+    public User getAuthorization(@RequestHeader("Authorization") String authToken) {
         System.out.println("authToken = " + authToken);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {

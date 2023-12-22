@@ -37,8 +37,8 @@ public class AuthenticationRestController {
             UserResponseDto user = userFacade.createUser(userRequestDto);
 
             if (user != null) {
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequestDto.getEmail(), userRequestDto.getPassword()));
-                String token = jwtTokenProvider.createToken(userRequestDto.getEmail(), user.getRole());
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getId(), userRequestDto.getPassword()));
+                String token = jwtTokenProvider.createToken(user.getId(), user.getRole());
                 return ResponseEntity.ok(new UserWithJwtResponseDto(token, user));
             } else {
                 throw new EntityExistException("");
@@ -55,15 +55,11 @@ public class AuthenticationRestController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserRequestDto req) {
         try {
-            String username = req.getEmail();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, req.getPassword()));
-            UserResponseDto user = userFacade.findUserByEmail(username);
+            UserResponseDto user = userFacade.findUserByEmail(req.getEmail());
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getId(), req.getPassword()));
 
-            if (user == null) {
-                throw new UsernameNotFoundException("User with username: " + username + " not found");
-            }
 
-            String token = jwtTokenProvider.createToken(username, user.getRole());
+            String token = jwtTokenProvider.createToken(user.getId(), user.getRole());
 
             return ResponseEntity.ok(new UserWithJwtResponseDto(token, user));
         } catch (AuthenticationException e) {

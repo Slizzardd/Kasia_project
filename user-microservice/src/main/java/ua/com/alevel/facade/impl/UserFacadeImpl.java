@@ -45,7 +45,7 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public UserResponseDto findUserById(String id) {
-        return null;
+        return new UserResponseDto(userService.findUserById(id));
     }
 
     @Override

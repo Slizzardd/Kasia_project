@@ -32,7 +32,7 @@ public class UserRestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             if (authentication instanceof UsernamePasswordAuthenticationToken) {
-                return ResponseEntity.ok(userFacade.findUserByEmail(authentication.getName()));
+                return ResponseEntity.ok(userFacade.findUserById(authentication.getName()));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
@@ -44,11 +44,12 @@ public class UserRestController {
     }
 
     @PostMapping("/registrationTeacher")
-    @PreAuthorize("#req.id == authentication.principal.id")
+
     public ResponseEntity<?> registrationTeacher(@RequestBody TeacherRequestDto req){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             if (authentication instanceof UsernamePasswordAuthenticationToken) {
+                req.setId(authentication.getName());
                 return ResponseEntity.ok(teacherFacade.createTeacher(req));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -61,11 +62,11 @@ public class UserRestController {
     }
 
     @PostMapping("/updateUser")
-    @PreAuthorize("#req.id == authentication.principal.id")
     public ResponseEntity<?> updateUser(@RequestBody UserRequestDto req){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             if (authentication instanceof UsernamePasswordAuthenticationToken) {
+                req.setId(authentication.getName());
                 return ResponseEntity.ok(userFacade.updateUser(req));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
