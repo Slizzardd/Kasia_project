@@ -16,8 +16,7 @@ public class UserResponseDto extends ResponseDto{
     private Languages language;
     private LanguageLevel hisLanguageLevel;
     private Role role;
-    private Status status;
-    private Status teacherStatus;
+    private Status accountStatus;
     public UserResponseDto(User user) {
         setId(user.getId());
         setCreated(user.getCreated());
@@ -26,20 +25,11 @@ public class UserResponseDto extends ResponseDto{
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.role = user.getRole();
-        this.status = user.getStatus();
+        this.accountStatus = user.getStatus();
         this.preferredAges = user.getPreferredAge();
         this.language = user.getHisLanguage();
         this.preferredLevels = user.getPreferredLevels();
         this.hisLanguageLevel = user.getHisLanguageLevel();
-        this.teacherStatus = user.getTeacherStatus();
-    }
-
-    public Status getTeacherStatus() {
-        return teacherStatus;
-    }
-
-    public void setTeacherStatus(Status teacherStatus) {
-        this.teacherStatus = teacherStatus;
     }
 
     public UserResponseDto() {
@@ -109,11 +99,11 @@ public class UserResponseDto extends ResponseDto{
         this.role = role;
     }
 
-    public Status getStatus() {
-        return status;
+    public Status getAccountStatus() {
+        return accountStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setAccountStatus(Status accountStatus) {
+        this.accountStatus = accountStatus;
     }
 }

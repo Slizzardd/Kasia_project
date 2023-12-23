@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String TEACHER_REGISTRATION_ENDPOINT = "/api/v1/teacher/registrationTeacher";
     private static final String TEACHER_ENDPOINT = "/api/v1/teacher/**";
     private static final String COURSES_FOR_NOT_AUTH_ENDPOINT = "/api/v1/course/findAll";
+    private static final String COURSES_FOR_TEACHER = "/api/v1/course/**";
 
     @Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -54,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(USER_ENDPOINT).hasRole("developers:read")
                     .antMatchers(TEACHER_REGISTRATION_ENDPOINT).hasRole("developers:read")
                     .antMatchers(TEACHER_ENDPOINT).hasRole("developers:educate")
+                    .antMatchers(COURSES_FOR_TEACHER).hasRole("developers:educate")
                     .anyRequest().authenticated()
                 .and()
                     .apply(new JwtConfigurer(jwtTokenProvider))

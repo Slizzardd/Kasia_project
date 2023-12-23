@@ -3,6 +3,7 @@ package ua.com.alevel.service.impl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.exceptions.EntityExistException;
+import ua.com.alevel.exceptions.EntityNotFoundException;
 import ua.com.alevel.persistence.entity.User;
 import ua.com.alevel.persistence.repository.UserRepository;
 import ua.com.alevel.service.UserService;
@@ -37,7 +38,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUserById(String id) {
-
+        if(userRepository.existsById(id)){
+            userRepository.deleteById(id);
+        }else {
+            throw new EntityNotFoundException("Later...");
+        }
     }
 
     @Override
@@ -45,7 +50,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsById(id)) {
             return userRepository.findById(id).orElse(null);
         } else {
-            throw new EntityExistException(("FUCK YOU"));
+            throw new EntityExistException("Later...");
         }
     }
 
@@ -56,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAllUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override

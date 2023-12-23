@@ -13,6 +13,8 @@ import ua.com.alevel.facade.TeacherFacade;
 import ua.com.alevel.facade.UserFacade;
 import ua.com.alevel.persistence.entity.User;
 import ua.com.alevel.service.UserService;
+import ua.com.alevel.util.InnerConverter;
+import ua.com.alevel.web.dto.responses.JwtUser;
 
 @RestController
 @RequestMapping("/api/v1/inner")
@@ -29,12 +31,12 @@ public class InnerRestController {
     }
 
     @GetMapping("/getAuthorization")
-    public User getAuthorization(@RequestHeader("Authorization") String authToken) {
+    public JwtUser getAuthorization(@RequestHeader("Authorization") String authToken) {
         System.out.println("authToken = " + authToken);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             if (authentication instanceof UsernamePasswordAuthenticationToken) {
-                return userService.findUserByEmail(authentication.getName());
+                return InnerConverter.convertUserToJwtUser(userService.findUserById(authentication.getName()));
             } else {
                 return null;
             }

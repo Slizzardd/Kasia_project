@@ -3,7 +3,7 @@ package ua.com.alevel.facade.impl;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.facade.TeacherFacade;
 import ua.com.alevel.persistence.entity.User;
-import ua.com.alevel.persistence.types.Status;
+import ua.com.alevel.persistence.types.Role;
 import ua.com.alevel.service.TeacherService;
 import ua.com.alevel.service.UserService;
 import ua.com.alevel.web.dto.requests.TeacherRequestDto;
@@ -14,6 +14,7 @@ public class TeacherFacadeImpl implements TeacherFacade {
 
     private final TeacherService teacherService;
     private final UserService userService;
+
     public TeacherFacadeImpl(TeacherService teacherService, UserService userService) {
         this.teacherService = teacherService;
         this.userService = userService;
@@ -27,7 +28,7 @@ public class TeacherFacadeImpl implements TeacherFacade {
         user.setHisLanguageLevel(req.getHisLanguageLevel());
         user.setPreferredAge(req.getPreferredAges());
         user.setPreferredLevels(req.getPreferredLevels());
-        user.setTeacherStatus(Status.NOT_ACTIVE);
+        user.setRole(Role.AWAITING_TEACHER);
 
         return new UserResponseDto(teacherService.createTeacher(user));
     }
@@ -43,7 +44,6 @@ public class TeacherFacadeImpl implements TeacherFacade {
         teacher.setHisLanguageLevel(req.getHisLanguageLevel());
         teacher.setPreferredAge(req.getPreferredAges());
         teacher.setPreferredLevels(req.getPreferredLevels());
-        teacher.setTeacherStatus(req.getTeacherStatus());
 
         return new UserResponseDto(teacherService.updateTeacher(teacher));
     }

@@ -66,9 +66,4 @@ public class AuthenticationRestController {
             throw new BadCredentialsException("Invalid username or password");
         }
     }
-
-    @GetMapping("/test")
-    public ResponseEntity<?> test() {
-        return ResponseEntity.ok("test");
-    }
 }

@@ -1,4 +1,4 @@
-package ua.com.alevel.web.dto.requests;
+package ua.com.alevel.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.Gson;
@@ -12,7 +12,7 @@ import java.util.Collection;
 
 public class JwtUser implements UserDetails {
 
-    private final String id;
+    private final String username;
     private final String firstName;
     private final String lastName;
     private final String password;
@@ -28,7 +28,7 @@ public class JwtUser implements UserDetails {
             String password, Collection<? extends GrantedAuthority> authorities,
             boolean enabled
     ) {
-        this.id = id;
+        this.username = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -37,7 +37,6 @@ public class JwtUser implements UserDetails {
         this.enabled = enabled;
     }
 
-    // Add this method to create Gson with custom deserializer
     public static JwtUser fromJson(String json) {
         try {
             Gson gson = new GsonBuilder()
@@ -49,14 +48,15 @@ public class JwtUser implements UserDetails {
         }
     }
 
+
     @JsonIgnore
     public String getId() {
-        return id;
+        return username;
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @JsonIgnore
@@ -77,11 +77,11 @@ public class JwtUser implements UserDetails {
         return true;
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -103,5 +103,4 @@ public class JwtUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
-    }
-}
+    }}

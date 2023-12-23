@@ -77,4 +77,21 @@ public class UserRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/deleteUser")
+    public ResponseEntity<?> deleteUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            if (authentication instanceof UsernamePasswordAuthenticationToken) {
+                userFacade.deleteUserById(authentication.getName());
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+        } catch (EntityExistException e) {
+            return ResponseEntity.status(409).build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

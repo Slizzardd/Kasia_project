@@ -20,22 +20,12 @@ public class User extends BaseEntity {
     private LanguageLevel hisLanguageLevel;
     private List<LanguageLevel> preferredLevels;
     private Languages hisLanguage;
-    private Status teacherStatus;
 
     public User() {
         super();
         this.role = Role.USER;
         this.status = Status.ACTIVE;
     }
-
-    public Status getTeacherStatus() {
-        return teacherStatus;
-    }
-
-    public void setTeacherStatus(Status teacherStatus) {
-        this.teacherStatus = teacherStatus;
-    }
-
     public List<Ages> getPreferredAge() {
         return preferredAge;
     }
@@ -114,31 +104,5 @@ public class User extends BaseEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), email);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", role=" + role +
-                ", status=" + status +
-                '}';
     }
 }
